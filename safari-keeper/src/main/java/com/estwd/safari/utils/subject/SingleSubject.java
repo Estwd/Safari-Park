@@ -7,20 +7,20 @@ import java.util.LinkedHashSet;
  */
 public class SingleSubject implements ConfigurationSubject {
 
-    private final ZNode zNode;
+    protected final LinkedHashSet<ZNode> configurationNode;
 
     public SingleSubject(String path, String description) {
-        zNode = new ZNode(path, description);
+       this(new ZNode(path, description));
     }
 
     public SingleSubject(ZNode zNode) {
-        this.zNode = zNode;
+        configurationNode = new LinkedHashSet<ZNode>() {{
+            add(zNode);
+        }};
     }
 
     @Override
     public LinkedHashSet<ZNode> getConfigurationNodes() {
-        return new LinkedHashSet<ZNode>() {{
-            add(zNode);
-        }};
+        return configurationNode;
     }
 }

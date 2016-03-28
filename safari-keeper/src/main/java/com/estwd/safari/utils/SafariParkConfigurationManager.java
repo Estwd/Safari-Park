@@ -20,7 +20,7 @@ public class SafariParkConfigurationManager {
         ConfigurationManager.install(compositeConfig);
     }
 
-    public static void add(String configSubjectPath, String description, CuratorFramework curatorFramework) {
+    private static void add(String configSubjectPath, String description, CuratorFramework curatorFramework) {
         ZooKeeperConfigurationSource zkConfigSource = new ZooKeeperConfigurationSource(curatorFramework, configSubjectPath);
 
         try {
