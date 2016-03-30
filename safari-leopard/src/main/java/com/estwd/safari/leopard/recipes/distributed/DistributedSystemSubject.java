@@ -14,14 +14,14 @@ public class DistributedSystemSubject {
 
     protected final static String CONFIG_ROOT_ZNODE = "/configuration";
     protected final static ZNode GLOBAL_ZNODE = new ZNode(CONFIG_ROOT_ZNODE + "/" + "global", "Values for the global scope");
-    protected final static Scope ENV_SCOPE = new Scope("environment", "Environment");
-    protected final static Scope SERVICE_SCOPE = new Scope("service", "Service");
-    protected final static Scope INSTANCE_SCOPE = new Scope("instance", "Instance");
+    protected final static Scope ENV_SCOPE_ROOT = new Scope("environment", "Environment");
+    protected final static Scope SERVICE_SCOPE_ROOT = new Scope("service", "Service");
+    protected final static Scope INSTANCE_SCOPE_ROOT = new Scope("instance", "Instance");
 
     protected boolean isGlobalScopeUsed = false;
-    protected boolean isEnvScopeUsed = false;
-    protected boolean isServiceScopeUsed = false;
-    protected boolean isInstanceScopeUsed = false;
+    protected Scope envScope;
+    protected Scope serviceScope;
+    protected Scope instanceScope;
 
     protected DistributedSystemSubject() {
     }
@@ -35,30 +35,34 @@ public class DistributedSystemSubject {
         return this;
     }
 
-    public DistributedSystemSubject environment() {
-        isEnvScopeUsed = true;
+    public DistributedSystemSubject environment(String zNode) {
+        envScope = addZNodeToScope(ENV_SCOPE_ROOT, zNode);
         return this;
     }
 
-    public DistributedSystemSubject service() {
-        isServiceScopeUsed = true;
+    public DistributedSystemSubject service(String zNode) {
+        serviceScope = addZNodeToScope(SERVICE_SCOPE_ROOT, zNode);
         return this;
     }
 
-    public DistributedSystemSubject instance() {
-        isInstanceScopeUsed = true;
+    public DistributedSystemSubject instance(String zNode) {
+        instanceScope = addZNodeToScope(INSTANCE_SCOPE_ROOT, zNode);
         return this;
+    }
+
+    private static Scope addZNodeToScope(Scope scope, String zNode) {
+        return new Scope(scope.getzNode() + "/" + zNode, scope.getScopeName());
     }
 
     public ConfigurationSubject build() {
         ConfigurationSubject configurationSubject = new EmptySubject();
 
-        if (isEnvScopeUsed)
-            configurationSubject = addToCompositeScope(configurationSubject, ENV_SCOPE);
-        if (isServiceScopeUsed)
-            configurationSubject = addToCompositeScope(configurationSubject, SERVICE_SCOPE);
-        if (isInstanceScopeUsed)
-            configurationSubject = addToCompositeScope(configurationSubject, INSTANCE_SCOPE);
+        if (envScope != null)
+            configurationSubject = addToCompositeScope(configurationSubject, envScope);
+        if (serviceScope != null)
+            configurationSubject = addToCompositeScope(configurationSubject, serviceScope);
+        if (instanceScope != null)
+            configurationSubject = addToCompositeScope(configurationSubject, instanceScope);
 
         if (isGlobalScopeUsed) {
             SingleSubject globalScope = new SingleSubject(GLOBAL_ZNODE);

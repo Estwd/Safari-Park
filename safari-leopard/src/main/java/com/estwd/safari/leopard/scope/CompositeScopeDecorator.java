@@ -13,7 +13,7 @@ public class CompositeScopeDecorator implements ConfigurationScopeDecorator {
 
     private static final String INITIAL_DESCRIPTION = "Values for the following scope: %s";
 
-    protected final LinkedHashSet<ZNode> configurationNodes;
+    private final LinkedHashSet<ZNode> configurationNodes;
 
     public CompositeScopeDecorator(ConfigurationSubject subject, String zNode, String scopeName, String root) {
         this(subject, new Scope(zNode, scopeName), root);

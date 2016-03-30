@@ -19,6 +19,9 @@ import javax.ws.rs.ApplicationPath;
 @ApplicationPath("/")
 public class MyApplication extends ResourceConfig {
 
+    private static final String ENV_NAME = "demo.e";
+    private static final String SERVICE_NAME = "demo.s";
+    private static final String INSTANCE_NAME = "demo.i";
     private static final String CONNECTION_STRING_KEY = "zk.connection.string";
 
     public MyApplication() {
@@ -34,7 +37,7 @@ public class MyApplication extends ResourceConfig {
     }
 
     private static ConfigurationSubject getDynamicConfigurationSubject() {
-        return DistributedSystemSubject.builder().global().environment().service().instance().build();
+        return DistributedSystemSubject.builder().global().environment(ENV_NAME).service(SERVICE_NAME).instance(INSTANCE_NAME).build();
     }
 
     private static CuratorFramework getSimpleCuratorFramework() {

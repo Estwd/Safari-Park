@@ -7,7 +7,7 @@ import java.util.LinkedHashSet;
  */
 public class SingleSubject implements ConfigurationSubject {
 
-    protected final LinkedHashSet<ZNode> configurationNode;
+    private final LinkedHashSet<ZNode> configurationNode;
 
     public SingleSubject(String path, String description) {
        this(new ZNode(path, description));

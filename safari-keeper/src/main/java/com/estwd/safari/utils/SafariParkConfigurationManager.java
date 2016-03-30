@@ -12,7 +12,7 @@ import org.apache.curator.framework.CuratorFramework;
  */
 public class SafariParkConfigurationManager {
 
-    final static ConcurrentCompositeConfiguration compositeConfig = new ConcurrentCompositeConfiguration();
+    private final static ConcurrentCompositeConfiguration compositeConfig = new ConcurrentCompositeConfiguration();
 
     public static void init(ConfigurationSubject subject, CuratorFramework curatorFramework) {
         subject.getConfigurationNodes().stream()
