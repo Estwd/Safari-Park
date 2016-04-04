@@ -1,22 +1,44 @@
 package com.estwd.safari.leopard.scope;
 
 /**
- * Created by development on 26/03/16.
+ * A specific scope for configuration values, which is a part of a classification
+ * group (for example - services).
+ *
+ * @author Guni Y.
  */
-public class Scope {
-    private final String zNode;
-    private final String scopeName;
+public final class Scope {
+    private final String name;
+    private final String classification;
 
-    public Scope(String zNode, String scopeName) {
-        this.zNode = zNode;
-        this.scopeName = scopeName;
+    /**
+     * Constructs a {@link Scope} with the given classification and name.
+     *
+     * @param name           the specific name of the Scope in the classification
+     *                       group (must be unique within that group)
+     * @param classification the name of the classification group that this Scope
+     *                       is a part of
+     */
+    public Scope(String name, String classification) {
+        this.classification = classification;
+        this.name = name;
     }
 
-    public String getzNode() {
-        return zNode;
+    /**
+     * Returns the name of this {@link Scope}.
+     *
+     * @return the name of this Scope
+     */
+    public String getName() {
+        return name;
     }
 
-    public String getScopeName() {
-        return scopeName;
+    /**
+     * Returns the name of the classification group of this {@link Scope}.
+     *
+     * @return the name of the classification group
+     */
+    public String getClassification() {
+        return classification;
     }
+
 }

@@ -1,9 +1,8 @@
 package com.estwd.safari.examples;
 
-import com.estwd.safari.leopard.recipes.distributed.DistributedSystemSubject;
-import com.estwd.safari.utils.SafariParkConfigurationManager;
+import com.estwd.safari.leopard.recipes.distributed.DistributedSystemSubjectBuilder;
+import com.estwd.safari.utils.SubjectsConfigurationManager;
 import com.estwd.safari.utils.subject.ConfigurationSubject;
-import com.estwd.safari.utils.subject.SingleSubject;
 import com.netflix.config.DynamicPropertyFactory;
 import org.apache.curator.ensemble.fixed.FixedEnsembleProvider;
 import org.apache.curator.framework.CuratorFramework;
@@ -14,7 +13,10 @@ import org.glassfish.jersey.server.ResourceConfig;
 import javax.ws.rs.ApplicationPath;
 
 /**
- * Created by development on 14/03/16.
+ * A {@link ResourceConfig} that install the dynamic configuration for a demo
+ * and distributed system values.
+ *
+ * @author Guni Y.
  */
 @ApplicationPath("/")
 public class MyApplication extends ResourceConfig {
@@ -31,13 +33,15 @@ public class MyApplication extends ResourceConfig {
 
     private void init() {
         ConfigurationSubject configurationSubject = getDynamicConfigurationSubject();
-        configurationSubject = ConfigurationSubject.append(configurationSubject, new SingleSubject("/demo", "Demo values"));
+        configurationSubject = configurationSubject.add(ConfigurationSubject.createSingleSubject("/demo", "Demo values"));
 
-        SafariParkConfigurationManager.init(configurationSubject, getSimpleCuratorFramework());
+        SubjectsConfigurationManager.install(configurationSubject, getSimpleCuratorFramework());
     }
 
     private static ConfigurationSubject getDynamicConfigurationSubject() {
-        return DistributedSystemSubject.builder().global().environment(ENV_NAME).service(SERVICE_NAME).instance(INSTANCE_NAME).build();
+        return new DistributedSystemSubjectBuilder()
+                .global().environment(ENV_NAME).service(SERVICE_NAME).instance(INSTANCE_NAME)
+                .build();
     }
 
     private static CuratorFramework getSimpleCuratorFramework() {

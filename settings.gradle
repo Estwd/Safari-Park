@@ -1,0 +1,4 @@
+rootProject.name = 'SafariPark'
+include 'main-attraction'
+include 'safari-keeper'
+include 'safari-leopard'
