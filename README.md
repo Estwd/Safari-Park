@@ -1,5 +1,5 @@
 Safari-Park
-<><><><><><>
+
 Safari-Park are a set of libraries that make the integration of Zookeeper with
 web platform in common use cases only a choice. In most cases it removes the
 need to write any extra code that isn't specific to your environment - and
