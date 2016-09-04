@@ -6,7 +6,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 /**
- * Created by development on 13/03/16.
+ * A demo servlet in the Safari-park test application.
+ *
+ * @author Guni Y.
  */
 @Path("/hello")
 public class HelloServlet {

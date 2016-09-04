@@ -1,7 +1,7 @@
 package com.estwd.safari.leopard.scope;
 
-import com.estwd.safari.utils.subject.ConfigurationSubject;
-import com.estwd.safari.utils.subject.ZNode;
+import com.estwd.safari.leopard.subject.ConfigurationSubject;
+import com.estwd.safari.leopard.subject.ZNode;
 import org.apache.curator.utils.PathUtils;
 
 import java.util.LinkedHashSet;

@@ -12,7 +12,14 @@ repositories {
 dependencies {
     compile 'org.glassfish.jersey.containers:jersey-container-servlet:2.22.2'
     compile 'javax.ws.rs:javax.ws.rs-api:2.0.1'
+    compile group: 'javax.servlet', name: 'servlet-api', version: '2.5'
 
-    compile project(":safari-keeper")
+    //Safari-Lion dependencies
+    compile group: 'org.apache.shiro', name: 'shiro-core', version: '1.2.5'
+    compile group: 'org.apache.shiro', name: 'shiro-web', version: '1.2.5'
+
+
+    compile project(":safari-park-utils")
     compile project(":safari-leopard")
+    compile project(":safari-lion")
 }

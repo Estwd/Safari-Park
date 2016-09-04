@@ -3,8 +3,8 @@ package com.estwd.safari.leopard.recipes.distributed;
 import com.estwd.safari.leopard.scope.CompositeScopeDecorator;
 import com.estwd.safari.leopard.scope.RootedConfigurationSubject;
 import com.estwd.safari.leopard.scope.Scope;
-import com.estwd.safari.utils.subject.ConfigurationSubject;
-import com.estwd.safari.utils.subject.ZNode;
+import com.estwd.safari.leopard.subject.ConfigurationSubject;
+import com.estwd.safari.leopard.subject.ZNode;
 
 /**
  * Builder of a {@link ConfigurationSubject} to be used in distributed system.
@@ -59,12 +59,6 @@ public class DistributedSystemSubjectBuilder {
     private Scope envScope;
     private Scope serviceScope;
     private Scope instanceScope;
-
-    /**
-     * Creates a builder.
-     */
-    public DistributedSystemSubjectBuilder() {
-    }
 
     /**
      * Adds a global scope to this subject scopes.

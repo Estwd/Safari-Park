@@ -1,4 +1,6 @@
 rootProject.name = 'SafariPark'
 include 'main-attraction'
-include 'safari-keeper'
+include 'safari-park-utils'
 include 'safari-leopard'
+include 'safari-lion'
+

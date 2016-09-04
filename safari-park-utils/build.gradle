@@ -1,0 +1,21 @@
+group 'MarlonEastwood'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+
+    //Using curator 2.x.x to enable the use of Zookeeper 3.4.x (aside from 3.5.x)
+    compile 'org.apache.curator:curator-framework:2.11.0'
+    compile 'org.apache.curator:curator-recipes:2.11.0'
+
+    compile 'org.slf4j:slf4j-api:1.7.19'
+
+}

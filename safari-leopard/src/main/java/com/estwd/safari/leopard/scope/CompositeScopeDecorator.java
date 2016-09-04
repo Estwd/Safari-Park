@@ -1,6 +1,6 @@
 package com.estwd.safari.leopard.scope;
 
-import com.estwd.safari.utils.subject.ZNode;
+import com.estwd.safari.leopard.subject.ZNode;
 
 import java.util.LinkedHashSet;
 import java.util.stream.Collectors;
